@@ -8,30 +8,31 @@ Cinematic wiki hero: one mercury droplet, observed, measured, released. Scroll i
 
 | Gate | State |
 |---|---|
-| MCP Blender 5.2.1 LTS + OPTIX | live |
+| MCP Blender 5.2.1 LTS + OPTIX RTX 5060 | live (addon 1.5, protocol 4) |
 | MCP GitHub | live |
-| 94 blender-skills installed | live |
-| Lookdev iter 0 | **NO-SHIP** (apex needle, widest 0.377 vs 0.300) |
-| Sequences 48/8/72 | blocked until SHIP |
+| 94 blender-skills | installed (`.claude/skills/`) |
+| Workflow | 10 agents, BUILD → AUDIT → DIFF → REFINE |
+| Geometry (checks 1–3 + tip) | **SHIP** — width 0.4200, widest z 0.3000, tip R 0.0588 |
+| Lookdev still | **NO-SHIP** — lower-third luma 0.136 vs < 0.08 |
+| Sequences 48/8/72 | blocked until A6 SHIP |
 
-Working `.blend` on the artist's machine: `Downloads/igem-hero-tier1/mercury-hero.blend`
+Working `.blend`: `Downloads/igem-hero-tier1/mercury-hero.blend`
 
 ## Authority
 
 1. `docs/00-HERO-DESIGN-SPEC.md` — every number is a contract
 2. `docs/02-AGENT-BRIEF-TIER1-BLENDER.md` — Tier 1 execution
 3. `pipeline/WORKFLOW.md` — multi-agent loop
-4. [arjun988/blender-skills](https://github.com/arjun988/blender-skills) — 94 specialist skills (AgX / roughness defaults **overridden** by the spec)
+4. `pipeline/agents/` — A0–A9 briefs (English). User-facing summaries: Traditional Chinese (HK)
+5. [arjun988/blender-skills](https://github.com/arjun988/blender-skills) — 94 skills (AgX / roughness defaults **overridden** by the spec)
 
-## Agents
-
-See `pipeline/agents/README.md`. English in the loop. Traditional Chinese (HK) for the human.
+## Loop
 
 ```
 BUILD (MCP) → AUDIT (qa-review, 18 checks) → DIFF vs spec → REFINE one variable
 ```
 
-Cap: 4 lookdev iterations on SEQ-A frame 0. Do not render 128 frames of a wrong look.
+Cap: 4 lookdev iterations on SEQ-A frame 0. A0 never models. A6 never fixes. A7 never changes two knobs. A8 never starts before A6 ships the still.
 
 ## Install skills
 
