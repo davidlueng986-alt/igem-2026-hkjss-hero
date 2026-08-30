@@ -11,39 +11,27 @@ Cinematic wiki hero: one mercury droplet, observed, measured, released. Scroll i
 | MCP Blender 5.2.1 LTS + OPTIX RTX 5060 | live (addon 1.5, protocol 4) |
 | MCP GitHub | live |
 | 94 blender-skills | installed (`.claude/skills/` from [arjun988/blender-skills](https://github.com/arjun988/blender-skills)) |
-| Workflow | 10 agents, BUILD → AUDIT → DIFF → REFINE |
+| Brief | **v1.1** — check 6 method + §4.2.1 ladder |
 | Geometry (checks 1–3 + tip) | **SHIP** — width 0.4200, widest z 0.3000, tip R 0.0588 |
-| Lookdev still | **NO-SHIP** — lower-third luma 0.136 vs < 0.08 |
-| HDRI Z-rot 7° (iter 5) | tried, no luma gain, **reverted** |
-| Sequences 48/8/72 | blocked until A6 SHIP |
+| Lookdev still | **ESCALATE** — check 6 median 0.3888 after rungs 1–3 |
+| Sequences 48/8/72 | blocked |
 
-Working `.blend` (local machine): `Downloads/igem-hero-tier1/mercury-hero.blend`
+Working `.blend`: `Downloads/igem-hero-tier1/mercury-hero.blend` (KEY-L 300 W / el 38°)
+
+## Check 6 ladder (v1.1)
+
+| Rung | Action | Median | Mean | Band px |
+|---|---|---|---|---|
+| 1 | restore ground §4.3 | 0.4205 | 0.4845 | 8.08 |
+| 2 | KEY-L el 30°→38°, 400 W | 0.4067 | 0.4629 | 4.08 |
+| 3 | KEY-L 300 W, el 38° | **0.3888** | 0.4475 | 4.08 |
+
+Threshold: median < 0.08, composite `#0A0B0D`, exclude 4% rim. None passed. Do not dim below 300 W.
 
 ## Authority
 
 1. `docs/00-HERO-DESIGN-SPEC.md` — every number is a contract
-2. `docs/02-AGENT-BRIEF-TIER1-BLENDER.md` — Tier 1 execution
+2. `docs/02-AGENT-BRIEF-TIER1-BLENDER.md` — Tier 1 execution **v1.1**
 3. `pipeline/WORKFLOW.md` — multi-agent loop
 4. `pipeline/agents/` — A0–A9 briefs (English). User-facing summaries: Traditional Chinese (HK)
 5. [arjun988/blender-skills](https://github.com/arjun988/blender-skills) — 94 skills (AgX / roughness defaults **overridden** by the spec)
-
-## Loop
-
-```
-BUILD (MCP) → AUDIT (qa-review, 18 checks) → DIFF vs spec → REFINE one variable
-```
-
-Cap: 4 lookdev iterations on SEQ-A frame 0. A0 never models. A6 never fixes. A7 never changes two knobs. A8 never starts before A6 ships the still.
-
-## Install skills
-
-```bash
-git clone --depth 1 https://github.com/arjun988/blender-skills.git vendor/blender-skills
-cp -a vendor/blender-skills/.claude/skills/. .claude/skills/
-```
-
-Agents must open the listed skill `SKILL.md` before they write pixels. Routing: `blender-director` → `blender-modeler` → `materials` → `lighting` → `camera-cinematography` → `lookdev` → `qa-review`.
-
-## HDRI
-
-`studio_small_08` from Poly Haven, **CC0**. https://polyhaven.com/a/studio_small_08
