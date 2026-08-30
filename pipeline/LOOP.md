@@ -12,6 +12,7 @@ A6 never fixes. A8 blocked until SHIP.
 | 4 | S2 | A7 | p3.handle_left; p2.x → 0.190 | widest **0.3000**; checks 1–3 **PASS** | geo SHIP |
 | 4b | S6 | A7 | ground XY scale 8→40 | luma 0.468 (no change) | **NO-SHIP** |
 | 4c | S6 | A7 | ground Specular IOR 0.5→0.0 | luma **0.136** (was 0.47; target < 0.08) | **NO-SHIP** |
+| 5 | S6 | A7 | HDRI Mapping Z `0° → 7°` | luma **0.137** (no gain) | reverted; **NO-SHIP** |
 
 Sequences, passes, packed beauty: blocked.
 
@@ -22,4 +23,4 @@ bbox 0.4200 × 1.0000. widest_z 0.3000. tip R 0.0588. inflection 0. Screw 32. Su
 ## Lookdev still (NO-SHIP)
 
 Hard strip highlights: yes. Occupancy 86.07%. Lower-third luma 0.136 vs < 0.08.
-Ground spec was the lever (scale was not). Next one-variable: KEY-L power **or** HDRI strength. Do not start SEQ-A.
+Ground spec was the lever (scale was not). HDRI Z-rot was not. Next one-variable would be KEY-L energy, but 400 W is a brief contract — escalate to wiki lead rather than silently breaking §4.2.

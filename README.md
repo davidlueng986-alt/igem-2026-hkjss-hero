@@ -10,13 +10,14 @@ Cinematic wiki hero: one mercury droplet, observed, measured, released. Scroll i
 |---|---|
 | MCP Blender 5.2.1 LTS + OPTIX RTX 5060 | live (addon 1.5, protocol 4) |
 | MCP GitHub | live |
-| 94 blender-skills | installed (`.claude/skills/`) |
+| 94 blender-skills | installed (`.claude/skills/` from [arjun988/blender-skills](https://github.com/arjun988/blender-skills)) |
 | Workflow | 10 agents, BUILD → AUDIT → DIFF → REFINE |
 | Geometry (checks 1–3 + tip) | **SHIP** — width 0.4200, widest z 0.3000, tip R 0.0588 |
 | Lookdev still | **NO-SHIP** — lower-third luma 0.136 vs < 0.08 |
+| HDRI Z-rot 7° (iter 5) | tried, no luma gain, **reverted** |
 | Sequences 48/8/72 | blocked until A6 SHIP |
 
-Working `.blend`: `Downloads/igem-hero-tier1/mercury-hero.blend`
+Working `.blend` (local machine): `Downloads/igem-hero-tier1/mercury-hero.blend`
 
 ## Authority
 
@@ -40,6 +41,8 @@ Cap: 4 lookdev iterations on SEQ-A frame 0. A0 never models. A6 never fixes. A7 
 git clone --depth 1 https://github.com/arjun988/blender-skills.git vendor/blender-skills
 cp -a vendor/blender-skills/.claude/skills/. .claude/skills/
 ```
+
+Agents must open the listed skill `SKILL.md` before they write pixels. Routing: `blender-director` → `blender-modeler` → `materials` → `lighting` → `camera-cinematography` → `lookdev` → `qa-review`.
 
 ## HDRI
 

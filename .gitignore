@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.output/
+.tanstack/
+.vite/
+*.log
+.env
+.env.*
+screenshots/*.png
+public/__grok/
+vendor/blender-skills/site/node_modules/
+vendor/blender-skills/site/.next/
+*.blend1
+*.blend2
+.DS_Store
