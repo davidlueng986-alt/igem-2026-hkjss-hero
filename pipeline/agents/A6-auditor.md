@@ -1,30 +1,17 @@
 # A6 Auditor — qa-review
-Read before acting: `.claude/skills/qa-review/SKILL.md` and Tier 1 brief §10.
+Read before acting: `.claude/skills/qa-review/SKILL.md` and Tier 1 brief §10 (v1.1).
 
 You never fix. You measure, screenshot, and write a verdict.
 
-## 18 checks (fail = NO-SHIP)
+## Check 6 method (brief v1.1, ADR-014)
 
-| # | Check | Pass | Measured |
-|---|---|---|---|
-| 1 | width/height | 0.420 ± 0.005 | |
-| 2 | widest from base | 0.300 ± 0.005 | |
-| 3 | no neck inflection | side ortho 400% | |
-| 4 | greyscale still reads as mercury | visual | |
-| 5 | rectangular softbox identifiable in key highlight | visual | |
-| 6 | lower third of bulb < 8% luma | measured | |
-| 7 | bright inner rim on lower silhouette | visual | |
-| 8 | two keys NOT mirror images | visual | |
-| 9 | zero blue/cyan/teal (20 samples, hue not 180–260) | measured | |
-| 10 | bump visible at 400%, invisible at 100% | visual | |
-| 11 | alpha clean, halo ≤ 2 px | 400% | |
-| 12 | no banding on dark falloff | 400% + levels | |
-| 13 | frame counts 48 / 8 / 72 | exact | |
-| 14 | SEQ-A frame 47→0 step equals others | numeric | |
-| 15 | SEQ-A silhouette identical (alpha delta max 0) | numeric | |
-| 16 | all seq identically framed, 86% height | measured | |
-| 17 | frame-match four contracts | numeric | |
-| 18 | composite over #0A0B0D reads as liquid metal | visual | |
+Median sRGB luma of the lower third of the silhouette, computed on the render
+**composited over `#0A0B0D`**, excluding the outer 4% of silhouette width on
+each side (rim band for check 7). Threshold: **median < 0.08**.
 
-Verdict: `SHIP` | `NO-SHIP` | `ESCALATE` (after 4 lookdev iters).
-One failing check blocks sequence render.
+Report: median, mean, excluded band width in pixels, confirm composite not
+straight-alpha. Helper: `pipeline/blender/measure_check6.py`.
+
+If check 6 fails, A7 walks brief §4.2.1 rungs 1 → 2 → 3. You only re-measure.
+
+Verdict: `SHIP` | `NO-SHIP` | `ESCALATE` (ladder exhausted or 4 lookdev iters).
